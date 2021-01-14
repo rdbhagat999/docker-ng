@@ -10,6 +10,7 @@ services:
   - docker
 
 before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - docker build -t rdb999/docker-ng -f Dockerfile.dev .
 
 scripts:
