@@ -1,0 +1,32 @@
+npx --ignore-existing -p @angular/cli@11 ng new sample-application --style=scss
+
+docker build --tag myImageName .
+docker build -t myImageName .
+docker build -t myImageName -f dev.Dockerfile .
+
+docker run --init --rm --publish 3000:3000 myImageName
+docker run --init --rm -p 3000:3000 myImageName
+
+docker run --mount type=bind,source="$(pwd)"/dist/static-assets-project/,target=/usr/share/nginx/html -p 8080:80 nginx:1.19.6-alpine
+
+// current user
+docker run --init --rm --publish 3000:3000 myImageName whoami
+
+// current directory path
+docker run --init --rm --publish 3000:3000 myImageName pwd
+
+// lookup permissions
+docker run --init --rm --publish 3000:3000 myImageName ls -lsah
+
+docker ps -aq
+docker info
+docker image list
+docker image ls
+docker image rm imageId
+docker rmi imageId
+docker image prune
+docker container ls -a
+docker container prune
+docker rm containerId
+docker run -it --name customName imageName:tag
+docker kill containerId

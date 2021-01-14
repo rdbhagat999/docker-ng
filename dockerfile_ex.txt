@@ -1,0 +1,29 @@
+FROM node:14-buster as base
+
+# run everything as debian user named node
+USER node
+
+# create directory as user node otherwise get error on next step
+RUN mkdir /home/node/src
+
+# sets destination directory
+WORKDIR /home/node/src
+
+# COPY package-lock.json and package.json to WORKDIR
+# it will use cache instead of downloading packages if package files are not changed
+# can cause problem if a patch is needed because the current modules are cached
+COPY --chown=node:node package-lock.json package.json ./
+
+# COPY everything from current directory to '/home/node/src'
+# COPY --chown=node:node . .
+
+# npm ci lookup package-lock.json to get packages, it is also faster
+#  we could have used npm install also
+RUN npm ci
+
+# COPY everything from current directory to '/home/node/src'
+COPY --chown=node:node . .
+
+# EXPOSE 3000
+
+CMD ["node", "index.js"]
