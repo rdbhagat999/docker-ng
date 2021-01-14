@@ -1,4 +1,4 @@
-sudo: required
+required: true
 language: node_js
 node_js:    
   - "14"
@@ -13,6 +13,6 @@ before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - docker build -t rdb999/docker-ng -f Dockerfile.dev .
 
-scripts:
-  - docker run rdb999/docker-ng -- npm run all_tests
+script:
+  - docker run rdb999/docker-ng npm run all_tests
  
