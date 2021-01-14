@@ -17,6 +17,8 @@ RUN npm ci && npm run build -- --prod
 # This line will create a second stage nginx container where we will copy the compiled output from our build stage.
 FROM nginx:1.19.6-alpine
 
+EXPOSE 80
+
 # This is the final command of our docker file. 
 # This will copy the compiled angular app from build stage path /app/dist/docker-ng/ to nginx container.
 COPY --from=builder /app/dist/docker-ng/ /usr/share/nginx/html

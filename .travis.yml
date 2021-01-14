@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t rdb999/docker-ng -f Dockerfile.dev .
+
+scripts:
+  - docker run rdb999/docker-ng -- npm run all_tests
+ 
