@@ -3,34 +3,16 @@
 # We are also giving a friendly name build to this image so we can refer it later.
 FROM node:14-buster-slim AS builder
 
-# Install deps + add Chrome Stable + purge all the things
-# RUN apt-get update && apt-get install -y \
-# 	apt-transport-https \
-# 	ca-certificates \
-# 	curl \
-# 	gnupg \
-# 	--no-install-recommends \
-# 	&& curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
-# 	&& echo "deb https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-# 	&& apt-get update && apt-get install -y \
-# 	google-chrome-unstable \
-# 	fontconfig \
-# 	fonts-ipafont-gothic \
-# 	fonts-wqy-zenhei \
-# 	fonts-thai-tlwg \
-# 	fonts-kacst \
-# 	fonts-symbola \
-# 	fonts-noto \
-# 	fonts-freefont-ttf \
-# 	--no-install-recommends \
-# 	&& apt-get purge --auto-remove -y curl gnupg \
-# 	&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends chromium \
+	&& apt-get -y install procps
+
+ENV CHROME_BIN=/usr/bin/chromium
+# ENV CHROME_BIN=/usr/bin/google-chrome
 
 # This WORKDIR command will create the working directory in our docker image. 
 # Going forward any command will be run in the context of this directory.
 WORKDIR /app
-
-# ENV CHROME_BIN=/usr/bin/google-chrome
 
 # This COPY only package files
 COPY package-lock.json package.json ./

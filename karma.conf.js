@@ -33,12 +33,12 @@ module.exports = function (config) {
       ]
     },
     customLaunchers: {
-      ChromeHeadless: {
+      'ChromeHeadless': {
         base: 'Chrome',
         flags: [
           '--no-sandbox',
-          '--disable-gpu',
           '--headless',
+          '--disable-gpu',
           '--remote-debugging-port=9222'
         ]
       }
@@ -48,8 +48,9 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome', 'ChromeHeadless'],
+    browsers: ['ChromeHeadless'],
     singleRun: true,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    browserNoActivityTimeout: 60000
   });
 };
