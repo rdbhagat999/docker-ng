@@ -22,7 +22,8 @@ before_script:
 script:
   - docker run rdb999/docker-ng npm run all_tests
   - npm install
-  - npm run build
+  - npm run all_tests
+  - npm run build -- --prod
  
 deploy:
   skip_cleanup: true
