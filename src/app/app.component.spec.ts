@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'docker-ng'`, () => {
+  it(`should have as title 'DockerNgTravis'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('docker-ng');
+    expect(app.title).toEqual('DockerNgTravis');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('docker-ng app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('DockerNgTravis app is running!');
   });
 });

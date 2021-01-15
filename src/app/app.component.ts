@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Docker-Ng-Travis';
+  title = 'DockerNgTravis';
 }
