@@ -3,6 +3,10 @@ language: node_js
 node_js:    
   - "14"
 
+branches:
+  only:
+    - main
+
 addons:
   chrome: stable
 
@@ -12,8 +16,13 @@ services:
 before_install:
   - docker build -t rdb999/docker-ng -f Dockerfile.dev .
 
+before_script:
+  - npm install -g @angular/cli
+
 script:
   - docker run rdb999/docker-ng npm run all_tests
+  - npm install
+  - npm run build
  
 deploy:
   skip_cleanup: true
